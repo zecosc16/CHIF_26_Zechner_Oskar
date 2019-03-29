@@ -5,8 +5,8 @@
  */
 package htl.zechner.producerconsumerfiles;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -15,19 +15,36 @@ import java.util.HashMap;
  * @author oskar
  */
 public class Book {
-    private  String inputfilename;
+
+    private String inputfilename;
     private String text;
 
     public Book(String inputfilename, String text) {
         this.inputfilename = inputfilename;
         this.text = text;
     }
-    
-    
-    public HashMap<String,Integer> countW() throws IOException{
-        BufferedWriter bw = new BufferedWriter(new FileWriter(inputfilename));
-       
+
+    public HashMap<String, Integer> countW() throws IOException {
+
+        HashMap<String, Integer> m = new HashMap<>();
+
+        BufferedReader br = new BufferedReader(new FileReader(inputfilename));
+        String[] w;
+        String s;
+        while ((s = br.readLine()) != null) {
+            w = s.split(" ");
+            for (String string : w) {
+                if (m.containsKey(string)) {
+                    int k = m.get(string);
+                    k++;
+                } else {
+                    m.put(string, 1);
+                }
+            }
+        }
+
+        br.close();
         
-        bw.close();
+        return m;
     }
 }
