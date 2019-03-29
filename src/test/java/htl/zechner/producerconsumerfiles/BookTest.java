@@ -22,7 +22,7 @@ public class BookTest {
      */
     @Test
     public void testCountW() {
-        assertEquals(true, true);
+        assertEquals(false, true);
     }
     
 }
