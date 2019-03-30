@@ -5,6 +5,10 @@
  */
 package htl.zechner.producerconsumerfiles;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,7 +26,17 @@ public class BookTest {
      */
     @Test
     public void testCountW() {
-        assertEquals(true, true);
+        Book b = new Book("./files/test.txt");
+        HashMap<String, Integer> test = new HashMap<>();
+        test.put("hallo", 2);
+        test.put("test", 4);
+        test.put("fehler", 1);
+        
+        try {
+            assertEquals(test, b.countW());
+        } catch (IOException ex) {
+            Logger.getLogger(BookTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

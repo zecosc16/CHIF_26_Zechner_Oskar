@@ -31,28 +31,29 @@ public class Producer extends Thread {
         while (true) {
             jf = new JFileChooser("./files");
             r = jf.showOpenDialog(null);
-            
-            synchronized(queue){
-            try {
-                
-                if(r==JFileChooser.APPROVE_OPTION)
-                    queue.put(new Book(jf.getSelectedFile().getPath()));
-                queue.notifyAll();
-                
-            } catch (FullException ex) {
+
+            synchronized (queue) {
                 try {
-                    System.out.println("Producer waits");
-                    queue.wait();
-                } catch (InterruptedException ex1) {
-                    Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex1);
+
+                    if (r == JFileChooser.APPROVE_OPTION) {
+                        queue.put(new Book(jf.getSelectedFile().getPath()));
+                        queue.notifyAll();
+                    }
+
+                } catch (FullException ex) {
+                    try {
+                        System.out.println("Producer waits");
+                        queue.wait();
+                    } catch (InterruptedException ex1) {
+                        Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex1);
+                    }
                 }
-            }
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
                 }
-        }
+            }
         }
     }
 
