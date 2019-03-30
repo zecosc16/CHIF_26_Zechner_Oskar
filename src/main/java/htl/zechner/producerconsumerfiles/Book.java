@@ -17,11 +17,9 @@ import java.util.HashMap;
 public class Book {
 
     private String inputfilename;
-    private String text;
 
-    public Book(String inputfilename, String text) {
+    public Book(String inputfilename) {
         this.inputfilename = inputfilename;
-        this.text = text;
     }
 
     public HashMap<String, Integer> countW() throws IOException {
@@ -36,7 +34,7 @@ public class Book {
             for (String string : w) {
                 if (m.containsKey(string)) {
                     int k = m.get(string);
-                    k++;
+                    m.put(string, ++k);
                 } else {
                     m.put(string, 1);
                 }

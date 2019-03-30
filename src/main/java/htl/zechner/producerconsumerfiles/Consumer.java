@@ -33,6 +33,7 @@ public class Consumer extends Thread{
             synchronized(queue){
                 try {
                     b=queue.get();
+                    queue.notifyAll();
                 } catch (EmptyException ex) {
                     try {
                         System.out.println(Thread.currentThread().getName()+" waits");
@@ -45,7 +46,7 @@ public class Consumer extends Thread{
             }
             
             try {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
                 
                 map=b.countW();
                 int count=0;
