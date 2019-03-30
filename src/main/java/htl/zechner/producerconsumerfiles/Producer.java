@@ -9,6 +9,7 @@ import Queue.FullException;
 import Queue.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -25,11 +26,17 @@ public class Producer extends Thread {
 
     @Override
     public void run() {
+        JFileChooser jf;
+        int r;
         while (true) {
+            jf = new JFileChooser("./files");
+            r = jf.showOpenDialog(null);
+            
             synchronized(queue){
             try {
-                System.out.println("lol");
-                queue.put(new Book("./Files/1jcfs10.txt"));
+                
+                if(r==JFileChooser.APPROVE_OPTION)
+                    queue.put(new Book(jf.getSelectedFile().getPath()));
                 queue.notifyAll();
                 
             } catch (FullException ex) {
