@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * @author oskar
  */
 public class BookTest {
-    
+
     public BookTest() {
     }
 
@@ -31,12 +31,12 @@ public class BookTest {
         test.put("hallo", 2);
         test.put("test", 4);
         test.put("fehler", 1);
-        
+
         try {
             assertEquals(test, b.countW());
         } catch (IOException ex) {
             Logger.getLogger(BookTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

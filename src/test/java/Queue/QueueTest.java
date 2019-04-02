@@ -20,14 +20,12 @@ import static org.junit.Assert.*;
  * @author oskar
  */
 public class QueueTest {
-    
-
 
     /**
      * Test of put method, of class Queue.
      */
     @Test
-    public void testPut()  {
+    public void testPut() {
         try {
             Queue<Book> q = new Queue<>(2);
             q.put(new Book("./files/h.txt"));
@@ -44,7 +42,7 @@ public class QueueTest {
      * Test of get method, of class Queue.
      */
     @Test
-    public void testGet() throws FullException  {
+    public void testGet() throws FullException {
         Queue<Book> q = new Queue<>(2);
         try {
             q.get();
@@ -52,7 +50,7 @@ public class QueueTest {
             assertEquals(true, true);
             return;
         }
-         assertEquals(true, false);
+        assertEquals(true, false);
     }
-    
+
 }

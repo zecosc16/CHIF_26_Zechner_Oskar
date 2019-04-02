@@ -30,5 +30,5 @@ public class NewMain {
         c1.start();
         c2.start();
     }
-    
+
 }
